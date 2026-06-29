@@ -432,20 +432,20 @@ body {
 .dose-water { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--ink-3); margin: 6px 0 4px; }
 .dose-water strong { font-weight: 500; color: var(--ink); }
 
-/* ─── Bandeja de grãos · feedback visual da dose ────────────────────────────── */
-.bean-tray { display: flex; flex-wrap: wrap; gap: 5px 6px; align-content: flex-start; min-height: 30px; margin: 14px 0 2px; }
+/* ─── Bandeja de grãos · feedback visual da dose (minimalista) ──────────────── */
+.bean-tray { display: flex; flex-wrap: wrap; gap: 6px 4px; align-content: flex-start; min-height: 9px; margin: 18px 0 4px; }
 .bean {
   --r: 0deg; --d: 0s;
-  width: 20px; height: 13px; border-radius: 50% / 58%;
-  background: linear-gradient(150deg, #6e4632, var(--mocha));
-  box-shadow: inset 0 -1px 2px rgba(0,0,0,.28), 0 1px 2px rgba(14,14,13,.18);
+  width: 13px; height: 8.5px; border-radius: 50% / 60%;
+  background: var(--mocha); opacity: .88;
   position: relative; transform: rotate(var(--r));
-  animation: beanIn .5s var(--spring) var(--d) both;
+  animation: beanIn .5s var(--ease2) var(--d) both;
 }
-.bean::before { content: ''; position: absolute; left: 50%; top: 12%; bottom: 12%; width: 1.4px; transform: translateX(-50%); background: rgba(18,10,6,.5); border-radius: 2px; }
-.bean.out { animation: beanOut .34s var(--ease) forwards; }
-@keyframes beanIn  { 0% { opacity: 0; transform: translateY(-26px) rotate(var(--r)) scale(.5); } 60% { opacity: 1; } 100% { opacity: 1; transform: translateY(0) rotate(var(--r)) scale(1); } }
-@keyframes beanOut { to { opacity: 0; transform: translateY(16px) rotate(var(--r)) scale(.4); } }
+/* vinco de luz sutil (em vez do traço escuro pesado) */
+.bean::before { content: ''; position: absolute; left: 50%; top: 16%; bottom: 16%; width: 1px; transform: translateX(-50%); background: rgba(251,249,244,.22); border-radius: 2px; }
+.bean.out { animation: beanOut .32s var(--ease) forwards; }
+@keyframes beanIn  { 0% { opacity: 0; transform: translateY(-14px) rotate(var(--r)); } 100% { opacity: .88; transform: translateY(0) rotate(var(--r)); } }
+@keyframes beanOut { to { opacity: 0; transform: translateY(9px) rotate(var(--r)); } }
 
 .slider-row { position: relative; height: 42px; display: flex; align-items: center; margin: 16px 0 4px; }
 .ideal-mark { position: absolute; top: 50%; transform: translateY(-50%); width: 1.5px; height: 16px; background: var(--terra); opacity: .35; pointer-events: none; z-index: 1; border-radius: 1px; }
