@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0E0E0D">
+  <meta name="description" id="metaDescription" content="Receita Lucca Lab — método Clever.">
+  <title>Receita · Lucca Cafés Especiais</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand" data-text="nav.brand" data-href="nav.brandHref"></a>
+  <a href="#receita" class="nav-cta" data-text="nav.cta.label" data-href="nav.cta.href"></a>
+</nav>
+
+<!-- Menu lateral de bolinhas (índice). Conteúdo gerado a partir de RECIPE.nav.sections -->
+<nav class="dotnav" id="dotnav" aria-label="Navegação por seções"></nav>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+
+<div class="hero-wrap" id="hero-wrap">
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg-inner"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        <span data-text="hero.eyebrow"></span>
+      </div>
+      <h1 id="heroTitle"></h1>
+      <div class="hero-foot">
+        <p class="hero-sub" data-text="hero.sub"></p>
+        <p class="hero-meta" id="heroMeta"></p>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </section>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     O LOTE — origem + dossiê
+     ═══════════════════════════════════════════ -->
+
+<section class="lote" id="lote">
+  <div class="lote-inner">
+
+    <div class="lote-head">
+      <p class="sec-index reveal" data-text="lote.index"></p>
+      <h2 class="lote-headline reveal" data-text="lote.headline"></h2>
+      <p class="lote-lede reveal" data-text="lote.lede"></p>
+    </div>
+
+    <div class="dossier-grid">
+
+      <!-- Foto -->
+      <div class="dossier-photo reveal" data-bg="lote.photo.image" aria-label="Fazenda">
+        <span class="dossier-photo-stamp" data-text="lote.photo.stamp"></span>
+        <span class="dossier-photo-tag" data-text="lote.photo.tag"></span>
+      </div>
+
+      <div class="dossier-content">
+
+        <!-- Produtor -->
+        <div class="dossier-producer reveal">
+          <p class="dossier-producer-eyebrow" data-text="lote.producer.eyebrow"></p>
+          <h3 class="dossier-producer-name" data-text="lote.producer.name"></h3>
+          <p class="dossier-producer-quote" data-text="lote.producer.quote"></p>
+        </div>
+
+        <!-- Ficha técnica -->
+        <div class="dossier-specs">
+          <p class="dossier-section-label reveal" data-text="lote.specsLabel"></p>
+          <div class="dossier-specs-grid" id="specsGrid"></div>
+        </div>
+
+        <!-- Score -->
+        <div class="dossier-score reveal">
+          <span class="dossier-score-num" data-text="lote.score.num"></span>
+          <div class="dossier-score-right">
+            <p class="dossier-score-label" data-text="lote.score.label"></p>
+            <p class="dossier-score-note" data-text="lote.score.note"></p>
+          </div>
+        </div>
+
+      </div><!-- /dossier-content -->
+    </div><!-- /dossier-grid -->
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SENSORIAL
+     ═══════════════════════════════════════════ -->
+
+<section class="sensorial" id="sensorial">
+  <div class="sensorial-inner">
+
+    <div class="sensorial-head">
+      <p class="sec-index reveal" data-text="sensorial.index"></p>
+      <h2 class="sensorial-headline reveal" data-text="sensorial.headline"></h2>
+      <p class="sensorial-lede reveal" data-text="sensorial.lede"></p>
+    </div>
+
+    <div class="flavor-grid" id="flavorGrid"></div>
+
+    <!-- Perfil sensorial (barras 0–5) -->
+    <div class="profile reveal">
+      <p class="dossier-section-label" data-text="sensorial.profileLabel"></p>
+      <div class="profile-grid" id="profileGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     BANDA EDITORIAL
+     ═══════════════════════════════════════════ -->
+
+<section class="band" aria-label="Da fazenda à xícara">
+  <div class="band-bg" aria-hidden="true" data-bg="band.image"></div>
+  <div class="band-grain" aria-hidden="true"></div>
+  <div class="band-inner">
+    <p class="band-quote reveal" data-text="band.quote"></p>
+    <p class="band-cite reveal" data-text="band.cite"></p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     A RECEITA
+     ═══════════════════════════════════════════ -->
+
+<section class="recipe" id="receita">
+  <div class="recipe-inner">
+
+    <div class="recipe-head">
+      <p class="sec-index reveal" data-text="recipe.index"></p>
+      <h2 class="recipe-headline reveal" data-text="recipe.headline"></h2>
+      <p class="recipe-lede reveal" data-text="recipe.lede"></p>
+    </div>
+
+    <!-- Por que esse método -->
+    <div class="why-grid" id="whyGrid"></div>
+
+    <!-- Palco do bloqueio: receita borrada (backdrop) + cartão de vidro por cima -->
+    <div class="lock-stage">
+    <div class="lock-backdrop">
+
+    <!-- Parâmetros -->
+    <div class="params reveal">
+      <div class="param">
+        <div class="param-v" id="pCoffee">25g</div>
+        <div class="param-k">Café</div>
+      </div>
+      <div class="param">
+        <div class="param-v" id="pWater">400g</div>
+        <div class="param-k">Água</div>
+      </div>
+      <div class="param">
+        <div class="param-v" id="pTemp">90 → 94°C</div>
+        <div class="param-k">Temperatura</div>
+      </div>
+      <div class="param">
+        <div class="param-v" id="pGrind">Grossa</div>
+        <div class="param-k">Moagem</div>
+      </div>
+    </div>
+
+    <!-- Dose dial -->
+    <div class="dial reveal">
+      <div class="dial-top">
+        <span class="dial-title">Ajuste a dose</span>
+        <span class="ratio-pill" id="ratioPill">1 : 16</span>
+      </div>
+      <div class="ideal-tag" id="idealTag">
+        <span class="ideal-dot" aria-hidden="true"></span>
+        <span id="idealTxt">Nossa receita · 25g</span>
+      </div>
+      <div class="dose-readout">
+        <span class="dose-n" id="doseN">25</span>
+        <span class="dose-unit">g de café</span>
+      </div>
+      <p class="dose-water">→ <strong id="doseW">400</strong>g de água total</p>
+
+      <div class="slider-row">
+        <span class="ideal-mark" id="iMark" aria-hidden="true"></span>
+        <input type="range" id="slider" min="18" max="32" value="25" step="1" class="ideal-pos" aria-label="Dose de café em gramas">
+      </div>
+      <div class="slider-limits"><span id="sMin">18g</span><span id="sMax">32g</span></div>
+
+      <div class="water-grid" id="waterGrid"></div>
+
+      <div class="flow" aria-hidden="true">
+        <span class="flow-a flow-bloom" id="fBloom"></span>
+        <span class="flow-a flow-main" id="fMain"></span>
+      </div>
+
+      <div class="calibration">
+        <div class="calib-bar"><span class="calib-cursor" id="calibCursor"></span></div>
+        <div class="calib-labels"><span>Mais leve</span><span>Equilíbrio</span><span>Mais intenso</span></div>
+        <p class="calib-zone" id="calibZone">No ponto · 1:16 equilibrado</p>
+      </div>
+
+      <div class="last-dose" id="lastDose">
+        <span class="ld-label">Sua última</span>
+        <span class="ld-val"></span>
+      </div>
+    </div>
+    </div><!-- /lock-backdrop -->
+
+    <!-- Bloqueio (modo Instagram / captura): aparece só com ?ig na URL -->
+    <div class="recipe-lock" id="recipeLock">
+      <span class="lock-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="11" width="14" height="9" rx="2"/>
+          <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+        </svg>
+      </span>
+      <p class="lock-eyebrow" data-text="lock.eyebrow"></p>
+      <h3 class="lock-title" data-text="lock.title"></h3>
+      <p class="lock-text" data-text="lock.text"></p>
+      <div class="lock-actions">
+        <a class="lock-cta lock-cta-primary" id="lockBuy" target="_blank" rel="noopener"></a>
+        <a class="lock-cta lock-cta-ghost"   id="lockWpp" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+    </div><!-- /lock-stage -->
+
+    <!-- Timer -->
+    <div class="timer" id="timer">
+      <span class="timer-label" id="timerLabel">Pronto?</span>
+      <span class="timer-clock" id="clock">0:00</span>
+      <button class="t-btn t-play" id="tPlay" onclick="toggleTimer()" aria-label="Iniciar / pausar">▶</button>
+      <button class="t-btn" onclick="resetTimer()" aria-label="Reiniciar">↺</button>
+      <button class="t-btn t-ghost" id="soundBtn" onclick="toggleSound()" aria-label="Som dos avisos" title="Som dos avisos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke-linejoin="round"/><path id="soundWave" d="M15.5 8.5a5 5 0 0 1 0 7" stroke-linecap="round"/></svg>
+      </button>
+      <button class="focus-btn" onclick="toggleFocus()">Foco</button>
+    </div>
+
+    <!-- Passo a passo -->
+    <div class="steps-head">
+      <p class="sec-index reveal" data-text="recipe.stepsIndex"></p>
+      <h2 class="steps-headline reveal" data-text="recipe.stepsHeadline"></h2>
+    </div>
+
+    <!-- Linha do tempo do preparo (gerada a partir dos passos) -->
+    <div class="brewline reveal" id="brewline" aria-hidden="true"></div>
+
+    <div class="steps" id="stepsClever"></div>
+
+    <div class="tip reveal">
+      <span class="tip-mark" aria-hidden="true">✦</span>
+      <div class="tip-txt" id="tipTxt"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     LUCCA LAB — quem desenvolveu
+     ═══════════════════════════════════════════ -->
+
+<section class="curator" id="lucca-lab">
+  <div class="curator-bg" aria-hidden="true"></div>
+  <div class="curator-inner">
+
+    <div class="curator-head">
+      <div>
+        <p class="curator-role" data-text="curator.role"></p>
+        <h2 class="curator-name" data-text="curator.name"></h2>
+      </div>
+    </div>
+
+    <p class="curator-bio reveal" data-text="curator.bio"></p>
+
+    <blockquote class="curator-quote reveal" data-text="curator.quote"></blockquote>
+
+    <div class="curator-courses reveal">
+      <p class="dossier-section-label" data-text="curator.coursesLabel"></p>
+      <div class="cc-links" id="ccLinks"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FECHAMENTO
+     ═══════════════════════════════════════════ -->
+
+<section class="closing" id="closing">
+  <div class="closing-inner">
+    <p class="sec-index closing-index reveal" data-text="closing.index"></p>
+    <h2 class="closing-headline reveal" data-text="closing.headline"></h2>
+    <p class="closing-lede reveal" data-text="closing.lede"></p>
+    <div class="fb-opts" id="fbOpts"></div>
+    <a href="#" target="_blank" rel="noopener" class="closing-cta reveal" data-href="closing.cta.href">
+      <span data-text="closing.cta.label"></span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+
+<footer>
+  <div class="foot">
+    <span class="foot-brand" data-text="footer.brand"></span>
+    <span class="foot-meta" data-text="footer.meta"></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- 1) Conteúdo da receita · edite SÓ este arquivo para trocar de café -->
+  <script src="dados-receita.js?v=4"></script>
+  <!-- 2) Motor da página · não precisa mexer -->
+  <script src="script.js?v=4"></script>
+</body>
+</html>

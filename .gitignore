@@ -1,0 +1,8 @@
+# cópias e artefatos locais (não vão pro site)
+_backup-original/
+site-deploy.zip
+.claude/
+
+# sistema
+Thumbs.db
+.DS_Store
