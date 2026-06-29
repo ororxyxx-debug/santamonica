@@ -179,11 +179,17 @@
 
     /* cartões de sabor */
     const fg = $('flavorGrid');
-    if (fg) fg.innerHTML = (R.sensorial.flavors || []).map(f =>
-      '<div class="flavor-card reveal"><span class="flavor-rank">' + rich(f.rank) +
-      '</span><h3 class="flavor-name">' + rich(f.name) +
-      '</h3><p class="flavor-desc">' + rich(f.desc) + '</p></div>'
-    ).join('');
+    if (fg) fg.innerHTML = (R.sensorial.flavors || []).map((f, i) => {
+      const n   = String(i + 1).padStart(2, '0');
+      const cue = f.cue ? '<span class="flavor-cue">' + rich(f.cue) + '</span>' : '';
+      return '<div class="flavor-card reveal">' +
+        '<span class="flavor-idx" aria-hidden="true">' + n + '</span>' +
+        '<span class="flavor-rank">' + rich(f.rank) + '</span>' +
+        '<h3 class="flavor-name">' + rich(f.name) + '</h3>' +
+        '<p class="flavor-desc">' + rich(f.desc) + '</p>' +
+        cue +
+      '</div>';
+    }).join('');
 
     /* perfil sensorial — barras de 0 a 5 */
     const pg = $('profileGrid');

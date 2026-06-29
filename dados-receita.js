@@ -152,11 +152,11 @@ const RECIPE = {
     headline: 'Maracujá, baunilha\n*e flor de laranjeira.*',
     lede:     'Aroma de *flor de laranjeira, baunilha e mel delicado*. Na boca, maracujá maduro com *acidez cítrica e málica* e corpo suculento; retrogosto longo de *crème brûlée*. À medida que esfria, o copo abre: flor de laranjeira a 60–65°C, maracujá fresco a 50–55°C e crème brûlée com baunilha e açúcar caramelizado a 40–45°C.',
 
-    // Três cartões de sabor:
+    // Três cartões de sabor. 'cue' (opcional) liga a nota ao momento/temperatura da xícara.
     flavors: [
-      { rank: 'Sabor principal', name: 'Maracujá maduro',      desc: 'Maracujá com acidez cítrica e málica, frescor suculento em cada gole.' },
-      { rank: 'Aroma',           name: 'Flor de Laranjeira',   desc: 'Flor de laranjeira, baunilha e mel delicado — um perfume refrescante.' },
-      { rank: 'Retrogosto',      name: 'Crème Brûlée',         desc: 'Baunilha e açúcar caramelizado que selam a experiência, retrogosto longo.' },
+      { rank: 'Sabor principal', name: 'Maracujá maduro',      desc: 'Maracujá com acidez cítrica e málica, frescor suculento em cada gole.', cue: 'Centro · 50–55°C' },
+      { rank: 'Aroma',           name: 'Flor de Laranjeira',   desc: 'Flor de laranjeira, baunilha e mel delicado — um perfume refrescante.',  cue: 'Aroma · 60–65°C' },
+      { rank: 'Retrogosto',      name: 'Crème Brûlée',         desc: 'Baunilha e açúcar caramelizado que selam a experiência, retrogosto longo.', cue: 'Final · 40–45°C' },
     ],
 
     // Perfil sensorial — notas de 0 a 5 (vira barras na seção "Na xícara").
