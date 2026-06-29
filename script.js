@@ -75,6 +75,11 @@
     return String(s || '').replace(/\{nomeCafe\}/g, R.coffeeName || '').replace(/\{metodo\}/g, M.name || '');
   }
 
+  /* Formata gramas no padrão pt-BR (vírgula decimal): 12.5 → "12,5", 25 → "25". */
+  function gnum(n) {
+    return Number(n).toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+  }
+
   /* Valores de água a partir de uma dose de café */
   function doseVals(c) {
     const w = Math.round(c * cfg.ratio);
@@ -86,7 +91,7 @@
      Roda DEPOIS do rich() (os tokens não têm < > e sobrevivem ao escape). */
   function gramSpans(html, v) {
     return String(html)
-      .replace(/\{cafe\}/g,  '<strong class="t-coffee">' + v.c + 'g</strong>')
+      .replace(/\{cafe\}/g,  '<strong class="t-coffee">' + gnum(v.c) + 'g</strong>')
       .replace(/\{bloom\}/g, '<strong class="t-bloom">' + v.bloom + 'g</strong>')
       .replace(/\{main\}/g,  '<strong class="t-main">' + v.main + 'g</strong>')
       .replace(/\{total\}/g, '<strong class="t-total">' + v.w + 'g</strong>');
@@ -207,7 +212,7 @@
     const pT = $('pTemp');  if (pT) pT.textContent = tSet(M.tempDisplay) ? M.tempDisplay : '—';
     const pG = $('pGrind'); if (pG) pG.textContent = M.grind;
     const rp = $('ratioPill'); if (rp) rp.textContent = cfg.ratioLbl;
-    const it = $('idealTxt');  if (it) it.textContent = 'Nossa receita · ' + cfg.ideal + 'g';
+    const it = $('idealTxt');  if (it) it.textContent = 'Nossa receita · ' + gnum(cfg.ideal) + 'g';
 
     /* grade de água */
     const v0 = doseVals(cfg.ideal);
@@ -432,9 +437,9 @@
 
     const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
 
-    set('pCoffee', c + 'g');
+    set('pCoffee', gnum(c) + 'g');
     set('pWater',  w + 'g');
-    set('doseN',   c);
+    set('doseN',   gnum(c));
     set('doseW',   w);
     set('w0',      bloom);
     set('w1',      main);
@@ -445,7 +450,7 @@
     if (fB) fB.style.width = bloomPct + '%';
     if (fM) { fM.style.left = bloomPct + '%'; fM.style.width = (100 - bloomPct) + '%'; }
 
-    document.querySelectorAll('.t-coffee').forEach(el => el.textContent = c     + 'g');
+    document.querySelectorAll('.t-coffee').forEach(el => el.textContent = gnum(c) + 'g');
     document.querySelectorAll('.t-bloom') .forEach(el => el.textContent = bloom + 'g');
     document.querySelectorAll('.t-main')  .forEach(el => el.textContent = main  + 'g');
     document.querySelectorAll('.t-total') .forEach(el => el.textContent = w     + 'g');
@@ -491,7 +496,7 @@
     const ld = $('lastDose');
     if (ld) {
       const v = ld.querySelector('.ld-val');
-      if (v) v.textContent = c + 'g · ' + Math.round(c * cfg.ratio) + 'g de água';
+      if (v) v.textContent = gnum(c) + 'g · ' + Math.round(c * cfg.ratio) + 'g de água';
       ld.classList.add('on');
     }
   }

@@ -85,7 +85,7 @@ const RECIPE = {
      ───────────────────────────────────────────────────────────────────────── */
   hero: {
     eyebrow: 'Receita Lucca Lab · Método V60',
-    image:   'https://i.imgur.com/BUzYHhV.png',   // ⚠️ TROCAR — placeholder; foto/arte do Maragogipe
+    image:   'https://i.imgur.com/ATlYLbb.gif',   // GIF do hero (animado)
 
     // Título grande. Uma linha por item. Use *...* na que deve ficar terracota.
     titleLines: [
@@ -113,8 +113,8 @@ const RECIPE = {
     lede:     'Na *Fazenda Santa Mônica*, em Ibiraci (MG), Jean Vilhena Faleiros conduz um *Maragogipe* a 1.200 m com processo *fermentado* — o grão graúdo e a fermentação que constroem o perfil floral e frutado deste lote.',
 
     photo: {
-      image: 'https://i.imgur.com/BnIQhKp.jpeg',          // ⚠️ TROCAR — placeholder; foto da fazenda/produtor
-      stamp: 'Fazenda Santa Mônica',                      // selo (canto superior)
+      image: 'https://i.imgur.com/yyTwYWn.jpeg',          // foto do produtor Jean Vilhena Faleiros
+      stamp: 'Jean Vilhena Faleiros',                     // selo (canto superior)
       tag:   '1.200 m · Alta Mogiana · MG',                // legenda (canto inferior)
     },
 
@@ -262,8 +262,8 @@ const RECIPE = {
      9) LUCCA LAB  ·  a assinatura por trás da receita (branding, sem foco em pessoa)
      ───────────────────────────────────────────────────────────────────────── */
   curator: {
-    // Fundo animado da seção inteira (vídeo leve — versão MP4 do gif):
-    background: 'https://i.imgur.com/nzOQpOe.mp4',   // ⚠️ TROCAR opcional — placeholder de fundo
+    // Fundo da seção inteira (imagem):
+    background: 'https://i.imgur.com/nT1PjRw.png',   // fundo do explicativo do Lucca Lab
     role:     'Receita desenvolvida no',
     name:     'Lucca\n*Lab.*',
     bio:      'O **Lucca Lab** é o laboratório sensorial da **Lucca Cafés Especiais**: onde nossa equipe de baristas prova, calibra e assina cada receita antes de ela chegar até você. Não é uma pessoa — é o nosso método.',

@@ -865,11 +865,14 @@ body.focus-mode .dotnav { display: none !important; }
    PREMIUM v4 · mais movimento em toda a página + glassmorphism elevado
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ─── Tokens de vidro (mais blur + saturação + brilho de borda) ─────────────── */
+/* ─── Tokens de vidro · editorial limpo (Blue Bottle): vidro fosco discreto,
+   bordas hairline em vez de brilho branco, sombras difusas e leves ─────────── */
 :root {
-  --glass-blur: 26px;
-  --glass-sat:  185%;
-  --glass-edge: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(14,14,13,.05);
+  --glass-blur: 22px;
+  --glass-sat:  132%;
+  --glass-edge: inset 0 1px 0 rgba(255,255,255,.34);   /* só um respiro de luz no topo */
+  --glass-line: 1px solid rgba(14,14,13,.07);          /* fio neutro, mais editorial que branco */
+  --glass-soft: 0 24px 60px -36px rgba(14,14,13,.16);  /* sombra ampla e leve, "papel flutuante" */
 }
 
 /* ─── Reveal: cascata mais ágil (o delay por item é setado no JS) ───────────── */
@@ -894,19 +897,18 @@ body.focus-mode .dotnav { display: none !important; }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   /* nav + timer: vidro mais profundo, com brilho no topo e sombra suave */
   .nav.scrolled {
-    background: linear-gradient(180deg, rgba(251,249,244,.78), rgba(251,249,244,.60));
+    background: rgba(251,249,244,.74);
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
             backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-    border-bottom: 1px solid rgba(255,255,255,.45);
-    box-shadow: var(--glass-edge), 0 10px 34px -10px rgba(14,14,13,.10);
+    border-bottom: 1px solid rgba(14,14,13,.06);
+    box-shadow: var(--glass-edge), 0 6px 28px -18px rgba(14,14,13,.08);
   }
   .timer {
-    background: linear-gradient(180deg, rgba(251,249,244,.74), rgba(251,249,244,.56));
+    background: rgba(251,249,244,.7);
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
             backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-    border-top: 1px solid rgba(255,255,255,.45);
-    border-bottom: 1px solid rgba(14,14,13,.05);
-    box-shadow: var(--glass-edge), 0 8px 26px -12px rgba(14,14,13,.10);
+    border-top: 1px solid rgba(14,14,13,.05);
+    box-shadow: var(--glass-edge), 0 6px 24px -16px rgba(14,14,13,.08);
   }
 
   /* pílulas de vidro sobre imagens */
@@ -926,9 +928,9 @@ body.focus-mode .dotnav { display: none !important; }
    o blur real não acrescenta e pesa muito — então uso gradiente translúcido +
    brilho de borda + sombra, que dá o mesmo aspecto premium sem custo de pintura. */
 .dial, .tip, .temp-detail.on {
-  background: linear-gradient(155deg, rgba(251,249,244,.92), rgba(244,239,230,.8));
-  border: 1px solid rgba(255,255,255,.6);
-  box-shadow: var(--glass-edge), 0 22px 56px -28px rgba(14,14,13,.28);
+  background: linear-gradient(165deg, rgba(251,249,244,.96), rgba(248,244,236,.9));
+  border: var(--glass-line);
+  box-shadow: var(--glass-edge), var(--glass-soft);
 }
 
 /* luz suave atrás da receita p/ dar profundidade ao painel de dose */
@@ -937,7 +939,7 @@ body.focus-mode .dotnav { display: none !important; }
   content: ''; position: absolute; z-index: 0; pointer-events: none;
   left: 50%; top: clamp(300px, 40vh, 520px); transform: translateX(-50%);
   width: min(720px, 92vw); height: 440px;
-  background: radial-gradient(closest-side, rgba(200,84,44,.12), transparent 72%);
+  background: radial-gradient(closest-side, rgba(200,84,44,.07), transparent 72%);
 }
 .recipe-inner { position: relative; z-index: 1; }
 
@@ -1066,14 +1068,14 @@ body.locked .lock-backdrop {
 /* ─── Cartão de bloqueio · VIDRO FOSCO (a receita borrada aparece através) ───── */
 body.locked .recipe-lock {
   display: block; grid-area: stack; place-self: center; position: relative; z-index: 3;
-  width: min(560px, 100%); text-align: center;
-  padding: clamp(36px, 5vw, 58px) clamp(26px, 4vw, 48px); border-radius: 20px;
+  width: min(540px, 100%); text-align: center;
+  padding: clamp(40px, 5.5vw, 64px) clamp(28px, 4.5vw, 52px); border-radius: 24px;
   /* translúcido: a receita borrada atrás aparece ATRAVÉS do cartão = vidro,
      sem backdrop-filter (que, empilhado sobre o blur de trás, trava a pintura) */
-  background: linear-gradient(160deg, rgba(251,249,244,.66), rgba(244,239,230,.5));
-  border: 1px solid rgba(255,255,255,.75);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.95), inset 0 0 60px rgba(255,255,255,.28),
-              0 50px 100px -42px rgba(14,14,13,.55), 0 10px 30px -20px rgba(14,14,13,.4);
+  background: linear-gradient(165deg, rgba(251,249,244,.74), rgba(247,242,234,.6));
+  border: 1px solid rgba(255,255,255,.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72),
+              0 44px 90px -52px rgba(14,14,13,.46), 0 8px 28px -22px rgba(14,14,13,.3);
 }
 .lock-badge {
   display: inline-flex; align-items: center; justify-content: center;
