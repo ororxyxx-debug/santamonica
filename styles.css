@@ -1177,4 +1177,37 @@ body.locked .recipe-lock {
 .lock-cta-primary:hover::after { transform: translateX(4px); }
 .lock-cta-ghost { background: none; color: var(--ink); border: 1px solid rgba(14,14,13,.25); }
 .lock-cta-ghost:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); transform: translateY(-3px); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RECIPE RITUAL · o cartão de dose se comporta como um documento físico
+   ajustar → o papel inclina/respira · assentar → trava (vibração + brilho)
+   · os campos se "recalculam" como se um barista tivesse refeito a ficha
+   (no fim do arquivo de propósito: a transição do cartão vence a do .reveal)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.dial {
+  transition: opacity .85s var(--ease2), transform .55s var(--ease2), box-shadow .55s var(--ease2);
+  transform-origin: 50% 42%; transform-style: preserve-3d;
+}
+.dial.adjusting {
+  transform: rotate(var(--tilt, 0deg)) translateY(-3px) scale(1.006);
+  box-shadow: var(--glass-edge), 0 36px 82px -34px rgba(14,14,13,.28);
+}
+
+/* travar: o número da dose dá um micro-pop com brilho terracota + vibração */
+.dose-n { display: inline-block; will-change: transform; }
+.dial.settled .dose-n { animation: doseLock .64s var(--ease2) both; }
+@keyframes doseLock {
+  0%   { transform: scale(1);     text-shadow: 0 0 0   rgba(200,84,44,0); }
+  16%  { transform: scale(1.05);  text-shadow: 0 0 24px rgba(200,84,44,.5); }
+  32%  { transform: translateX(-1.4px) scale(1.02); }
+  48%  { transform: translateX(1.4px); }
+  64%  { transform: translateX(0) scale(1); }
+  100% { transform: scale(1);     text-shadow: 0 0 0   rgba(200,84,44,0); }
+}
+
+/* recalcular: os campos de água sobem/desfocam ao assentar (ficha refeita) */
+.dial.settled .wg-v { animation: recalc .5s var(--ease2) both; }
+.dial.settled .wg:nth-child(2) .wg-v { animation-delay: .06s; }
+.dial.settled .wg:nth-child(3) .wg-v { animation-delay: .12s; }
+@keyframes recalc { 0% { opacity: .25; transform: translateY(5px); filter: blur(1.2px); } 100% { opacity: 1; transform: none; filter: none; } }
 .lock-cta:active { transform: scale(.97); }

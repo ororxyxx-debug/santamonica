@@ -114,6 +114,32 @@
     }
   }
 
+  /* Recipe Ritual — o cartão de dose se comporta como um documento físico:
+     ao ajustar ele inclina/respira; quando o usuário para (assenta), ele
+     "trava" com micro-vibração + brilho no número e os campos se recalculam. */
+  let _dialEl, _prevDose = null, _settleTimer = null;
+  function ritualReact(c) {
+    _dialEl = _dialEl || $('doseN') && document.querySelector('.dial');
+    if (!_dialEl) return;
+    if (_prevDose === null) { _prevDose = c; return; }   // 1ª render (init): sem ritual
+    const delta = c - _prevDose;
+    _prevDose = c;
+    if (delta !== 0) {
+      _dialEl.style.setProperty('--tilt', (Math.sign(delta) * 0.55).toFixed(2) + 'deg');
+      _dialEl.classList.add('adjusting');
+      _dialEl.classList.remove('settled');
+    }
+    clearTimeout(_settleTimer);
+    _settleTimer = setTimeout(() => {
+      // assentou: volta ao repouso e dispara o "travar + recalcular"
+      _dialEl.classList.remove('adjusting');
+      _dialEl.style.setProperty('--tilt', '0deg');
+      _dialEl.classList.remove('settled');
+      void _dialEl.offsetWidth;                 // reflow p/ reiniciar a animação
+      _dialEl.classList.add('settled');
+    }, 230);
+  }
+
   /* Substitui {cafe}/{bloom}/{main}/{total} por spans que atualizam ao vivo.
      Roda DEPOIS do rich() (os tokens não têm < > e sobrevivem ao escape). */
   function gramSpans(html, v) {
@@ -474,6 +500,9 @@
 
     // grãos proporcionais à dose (1 grão ≈ 1 g)
     renderBeans(Math.round(c));
+
+    // Recipe Ritual: o cartão reage como papel físico e "trava" ao assentar
+    ritualReact(c);
 
     const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
 
