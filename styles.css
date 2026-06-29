@@ -147,6 +147,17 @@ body {
   content: ''; position: absolute; inset: 0; opacity: .18; z-index: 2; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
+/* mobile: o sachê é o protagonista (cover ocupa a tela). Hero enxuto —
+   só título + chips ancorados embaixo, sobre um scrim forte. Sem eyebrow/notas. */
+@media (max-width: 768px) {
+  .hero .hero-eyebrow, .hero .hero-sub { display: none; }
+  .hero-bg-inner { background-position: center 30%; }
+  .hero-bg::after {
+    background: linear-gradient(180deg,
+      rgba(14,14,13,.45) 0%,  rgba(14,14,13,.14) 24%,
+      rgba(14,14,13,.42) 58%, rgba(14,14,13,.85) 84%, rgba(14,14,13,.97) 100%);
+  }
+}
 .hero-inner {
   position: relative; z-index: 3;
   flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
@@ -420,6 +431,21 @@ body {
 .dose-unit { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-5); }
 .dose-water { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--ink-3); margin: 6px 0 4px; }
 .dose-water strong { font-weight: 500; color: var(--ink); }
+
+/* ─── Bandeja de grãos · feedback visual da dose ────────────────────────────── */
+.bean-tray { display: flex; flex-wrap: wrap; gap: 5px 6px; align-content: flex-start; min-height: 30px; margin: 14px 0 2px; }
+.bean {
+  --r: 0deg; --d: 0s;
+  width: 20px; height: 13px; border-radius: 50% / 58%;
+  background: linear-gradient(150deg, #6e4632, var(--mocha));
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.28), 0 1px 2px rgba(14,14,13,.18);
+  position: relative; transform: rotate(var(--r));
+  animation: beanIn .5s var(--spring) var(--d) both;
+}
+.bean::before { content: ''; position: absolute; left: 50%; top: 12%; bottom: 12%; width: 1.4px; transform: translateX(-50%); background: rgba(18,10,6,.5); border-radius: 2px; }
+.bean.out { animation: beanOut .34s var(--ease) forwards; }
+@keyframes beanIn  { 0% { opacity: 0; transform: translateY(-26px) rotate(var(--r)) scale(.5); } 60% { opacity: 1; } 100% { opacity: 1; transform: translateY(0) rotate(var(--r)) scale(1); } }
+@keyframes beanOut { to { opacity: 0; transform: translateY(16px) rotate(var(--r)) scale(.4); } }
 
 .slider-row { position: relative; height: 42px; display: flex; align-items: center; margin: 16px 0 4px; }
 .ideal-mark { position: absolute; top: 50%; transform: translateY(-50%); width: 1.5px; height: 16px; background: var(--terra); opacity: .35; pointer-events: none; z-index: 1; border-radius: 1px; }

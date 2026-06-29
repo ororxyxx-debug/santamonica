@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -197,6 +197,9 @@
       </div>
       <p class="dose-water">→ <strong id="doseW">400</strong>g de água total</p>
 
+      <!-- grãos: caem ao aumentar a dose, somem ao diminuir (preenchido pelo JS) -->
+      <div class="bean-tray" id="beanTray" aria-hidden="true"></div>
+
       <div class="slider-row">
         <span class="ideal-mark" id="iMark" aria-hidden="true"></span>
         <input type="range" id="slider" min="18" max="32" value="25" step="1" class="ideal-pos" aria-label="Dose de café em gramas">
@@ -335,8 +338,8 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- 1) Conteúdo da receita · edite SÓ este arquivo para trocar de café -->
-  <script src="dados-receita.js?v=7"></script>
+  <script src="dados-receita.js?v=9"></script>
   <!-- 2) Motor da página · não precisa mexer -->
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

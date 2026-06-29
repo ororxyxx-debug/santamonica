@@ -87,6 +87,33 @@
     return { c, w, bloom, main: w - bloom };
   }
 
+  /* Bandeja de grãos: reconcilia a quantidade de grãos com a dose.
+     Sobe a dose → novos grãos caem; desce → grãos saem. */
+  let _beanTray;
+  function renderBeans(n) {
+    _beanTray = _beanTray || $('beanTray');
+    if (!_beanTray) return;
+    const live = _beanTray.querySelectorAll('.bean:not(.out)');
+    const cur  = live.length;
+    if (n > cur) {
+      const frag = document.createDocumentFragment();
+      for (let i = cur; i < n; i++) {
+        const b = document.createElement('span');
+        b.className = 'bean';
+        b.style.setProperty('--r', (Math.random() * 44 - 22).toFixed(1) + 'deg');
+        b.style.setProperty('--d', (Math.random() * 0.12).toFixed(2) + 's');
+        frag.appendChild(b);
+      }
+      _beanTray.appendChild(frag);
+    } else if (n < cur) {
+      for (let i = cur - 1; i >= n; i--) {
+        const b = live[i];
+        b.classList.add('out');
+        b.addEventListener('animationend', () => b.remove(), { once: true });
+      }
+    }
+  }
+
   /* Substitui {cafe}/{bloom}/{main}/{total} por spans que atualizam ao vivo.
      Roda DEPOIS do rich() (os tokens não têm < > e sobrevivem ao escape). */
   function gramSpans(html, v) {
@@ -444,6 +471,9 @@
     // preenche o trilho à esquerda do thumb (vira slider "de verdade", não um ponto)
     const sp = (c - cfg.min) / (cfg.max - cfg.min) * 100;
     slider.style.background = 'linear-gradient(90deg, var(--terra) 0 ' + sp + '%, var(--sand) ' + sp + '% 100%)';
+
+    // grãos proporcionais à dose (1 grão ≈ 1 g)
+    renderBeans(Math.round(c));
 
     const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
 
