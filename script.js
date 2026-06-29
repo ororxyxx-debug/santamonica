@@ -441,6 +441,10 @@
     const bloom = Math.round(c * cfg.bloomMult);
     const main  = w - bloom;
 
+    // preenche o trilho à esquerda do thumb (vira slider "de verdade", não um ponto)
+    const sp = (c - cfg.min) / (cfg.max - cfg.min) * 100;
+    slider.style.background = 'linear-gradient(90deg, var(--terra) 0 ' + sp + '%, var(--sand) ' + sp + '% 100%)';
+
     const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
 
     set('pCoffee', gnum(c) + 'g');
@@ -815,6 +819,12 @@
       slider.value = (saved != null && saved >= cfg.min && saved <= cfg.max) ? saved : cfg.ideal;
       slider.addEventListener('input',  render);
       slider.addEventListener('change', saveDose);
+      // dica de "arraste" some assim que o usuário interage (ou se já mexeu antes)
+      const dial = slider.closest('.dial');
+      const markTouched = () => { if (dial) dial.classList.add('touched'); };
+      if (saved != null) markTouched();
+      ['pointerdown', 'touchstart', 'keydown'].forEach(ev =>
+        slider.addEventListener(ev, markTouched, { once: true }));
     }
 
     const sMin = $('sMin'), sMax = $('sMax');

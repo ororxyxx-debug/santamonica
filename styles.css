@@ -424,14 +424,35 @@ body {
 .slider-row { position: relative; height: 42px; display: flex; align-items: center; margin: 16px 0 4px; }
 .ideal-mark { position: absolute; top: 50%; transform: translateY(-50%); width: 1.5px; height: 16px; background: var(--terra); opacity: .35; pointer-events: none; z-index: 1; border-radius: 1px; }
 .ideal-mark::before { content: 'nossa receita'; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 7px; letter-spacing: .14em; text-transform: uppercase; color: var(--terra); white-space: nowrap; opacity: .7; }
-input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: var(--sand); border-radius: 1px; outline: none; cursor: pointer; position: relative; z-index: 2; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); cursor: grab; box-shadow: 0 1px 8px rgba(14,14,13,.22); transition: background .3s, transform .2s; }
-input[type=range].ideal-pos::-webkit-slider-thumb { background: var(--terra); box-shadow: 0 2px 14px rgba(200,84,44,.4); }
-input[type=range]::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.16); }
-input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border: none; border-radius: 50%; background: var(--ink); cursor: grab; box-shadow: 0 1px 8px rgba(14,14,13,.22); }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; background: var(--sand); border-radius: 2px; outline: none; cursor: pointer; position: relative; z-index: 2; }
+/* thumb = "knob": núcleo terra + aro de papel, destacado do trilho */
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); border: 2.5px solid var(--paper); cursor: grab; box-shadow: 0 2px 10px rgba(14,14,13,.28); transition: background .3s, transform .2s var(--spring), box-shadow .3s; }
+input[type=range].ideal-pos::-webkit-slider-thumb { background: var(--terra); box-shadow: 0 2px 14px rgba(200,84,44,.45); }
+input[type=range]:hover::-webkit-slider-thumb  { transform: scale(1.1); }
+input[type=range]::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.2); }
+input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border: 2.5px solid var(--paper); border-radius: 50%; background: var(--ink); cursor: grab; box-shadow: 0 2px 10px rgba(14,14,13,.28); }
 input[type=range].ideal-pos::-moz-range-thumb { background: var(--terra); }
-.slider-limits { display: flex; justify-content: space-between; }
-.slider-limits span { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-5); }
+input[type=range]:active::-moz-range-thumb { cursor: grabbing; }
+
+/* pulso de atenção no thumb até a 1ª interação (some quando .dial fica .touched) */
+@keyframes thumbHint {
+  0%   { box-shadow: 0 2px 14px rgba(200,84,44,.45), 0 0 0 0  rgba(200,84,44,.5); }
+  70%  { box-shadow: 0 2px 14px rgba(200,84,44,.45), 0 0 0 14px rgba(200,84,44,0); }
+  100% { box-shadow: 0 2px 14px rgba(200,84,44,.45), 0 0 0 0  rgba(200,84,44,0); }
+}
+.dial:not(.touched) input[type=range].ideal-pos::-webkit-slider-thumb { animation: thumbHint 2.2s ease-out infinite; }
+
+.slider-limits { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; }
+.slider-limits #sMin, .slider-limits #sMax { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-5); flex: 0 0 auto; }
+/* dica textual "← arraste →" — respira p/ chamar atenção, some após o 1º uso */
+.slider-hint { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--terra); white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; animation: hintBreath 2.4s ease-in-out infinite; transition: opacity .45s var(--ease), transform .45s var(--ease); }
+.sh-arrow { display: inline-block; animation: nudgeL 1.5s var(--ease) infinite; }
+.sh-arrow:last-child { animation-name: nudgeR; }
+.dial.touched .slider-hint { animation: none; opacity: 0; transform: translateY(2px); pointer-events: none; }
+.dial.touched .sh-arrow { animation: none; }
+@keyframes hintBreath { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+@keyframes nudgeL { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-3px); } }
+@keyframes nudgeR { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
 
 .water-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 22px; margin-top: 22px; border-top: 1px solid rgba(14,14,13,.08); }
 .wg { text-align: center; display: flex; flex-direction: column; gap: 3px; }
