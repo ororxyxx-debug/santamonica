@@ -1229,3 +1229,30 @@ body.locked .recipe-lock {
 .dial.settled .wg:nth-child(3) .wg-v { animation-delay: .12s; }
 @keyframes recalc { 0% { opacity: .25; transform: translateY(5px); filter: blur(1.2px); } 100% { opacity: 1; transform: none; filter: none; } }
 .lock-cta:active { transform: scale(.97); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AJUSTE A DOSE · minimalista (Blue Bottle): só o número respira; o resto
+   é fio, espaço e texto quieto. (no fim do arquivo p/ vencer regras anteriores)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.dial-min { padding-top: clamp(30px, 4.5vh, 44px); padding-bottom: clamp(30px, 4.5vh, 44px); }
+
+/* número protagonista, unidade discreta embaixo */
+.dial-min .dose-readout { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: clamp(22px, 4.5vh, 38px) 0 clamp(24px, 4.5vh, 38px); }
+.dial-min .dose-n { font-size: clamp(3.8rem, 12vw, 5.8rem); line-height: .92; letter-spacing: -.045em; }
+.dial-min .dose-unit { font-size: 11px; letter-spacing: .2em; color: var(--ink-4); }
+
+/* slider: fio fino + alça pequena e precisa, sem pulso nem aro grosso */
+.dial-min input[type=range] { height: 2px; }
+.dial-min input[type=range]::-webkit-slider-thumb { width: 16px; height: 16px; border-width: 2px; box-shadow: 0 1px 6px rgba(14,14,13,.18); animation: none !important; }
+.dial-min input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.06); }
+.dial-min input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-width: 2px; }
+
+/* marca da dose ideal: traço fino, sem rótulo "nossa receita" */
+.dial-min .ideal-mark { height: 9px; opacity: .28; }
+.dial-min .ideal-mark::before { content: none; }
+
+.dial-min .slider-limits { margin-top: 12px; }
+.dial-min .slider-limits span { color: var(--ink-5); }
+
+/* parâmetros numa única linha quieta */
+.dose-line { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; color: var(--ink-4); margin-top: clamp(24px, 4.5vh, 34px); }

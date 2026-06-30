@@ -218,6 +218,7 @@ const RECIPE = {
     max:        16,           // máximo do controle deslizante
     bloomMult:  2.8,          // pré-infusão = café × este número (2,8 → 12,5g = 35g)
 
+    timeLabel:   '2:40–3:00',  // tempo total da extração (linha quieta do painel de dose)
     tempDisplay: '92°C',      // temperatura (painel de parâmetros)
     grind:       'Média-fina',// moagem (painel de parâmetros)
     bloomTemp:   '92°C',      // temperatura da água (grade de água)

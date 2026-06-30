@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
 
@@ -181,55 +181,26 @@
       </div>
     </div>
 
-    <!-- Dose dial -->
-    <div class="dial reveal">
+    <!-- Dose dial · minimalista (Blue Bottle): só o número, um slider de fio
+         e os parâmetros numa linha quieta -->
+    <div class="dial dial-min reveal">
       <div class="dial-top">
         <span class="dial-title">Ajuste a dose</span>
         <span class="ratio-pill" id="ratioPill">1 : 16</span>
       </div>
-      <div class="ideal-tag" id="idealTag">
-        <span class="ideal-dot" aria-hidden="true"></span>
-        <span id="idealTxt">Nossa receita · 25g</span>
-      </div>
-      <div class="dose-readout">
-        <span class="dose-n" id="doseN">25</span>
-        <span class="dose-unit">g de café</span>
-      </div>
-      <p class="dose-water">→ <strong id="doseW">400</strong>g de água total</p>
 
-      <!-- balança: os grãos caem no prato; o braço inclina ao ajustar e
-           trava nivelado ao assentar (grãos preenchidos pelo JS) -->
-      <div class="scale" aria-hidden="true">
-        <div class="scale-beam" id="scaleBeam">
-          <div class="bean-tray" id="beanTray"></div>
-        </div>
-        <span class="scale-fulcrum"></span>
-        <span class="scale-foot"></span>
+      <div class="dose-readout">
+        <span class="dose-n" id="doseN">12,5</span>
+        <span class="dose-unit">gramas de café</span>
       </div>
 
       <div class="slider-row">
         <span class="ideal-mark" id="iMark" aria-hidden="true"></span>
-        <input type="range" id="slider" min="18" max="32" value="25" step="1" class="ideal-pos" aria-label="Dose de café em gramas">
+        <input type="range" id="slider" min="10" max="16" value="12.5" step="0.5" class="ideal-pos" aria-label="Dose de café em gramas">
       </div>
-      <div class="slider-limits"><span id="sMin">18g</span><span class="slider-hint" aria-hidden="true"><span class="sh-arrow">←</span> arraste para ajustar <span class="sh-arrow">→</span></span><span id="sMax">32g</span></div>
+      <div class="slider-limits"><span id="sMin">10g</span><span id="sMax">16g</span></div>
 
-      <div class="water-grid" id="waterGrid"></div>
-
-      <div class="flow" aria-hidden="true">
-        <span class="flow-a flow-bloom" id="fBloom"></span>
-        <span class="flow-a flow-main" id="fMain"></span>
-      </div>
-
-      <div class="calibration">
-        <div class="calib-bar"><span class="calib-cursor" id="calibCursor"></span></div>
-        <div class="calib-labels"><span>Mais leve</span><span>Equilíbrio</span><span>Mais intenso</span></div>
-        <p class="calib-zone" id="calibZone">No ponto · 1:16 equilibrado</p>
-      </div>
-
-      <div class="last-dose" id="lastDose">
-        <span class="ld-label">Sua última</span>
-        <span class="ld-val"></span>
-      </div>
+      <p class="dose-line" id="doseLine"></p>
     </div>
     </div><!-- /lock-backdrop -->
 
@@ -345,8 +316,8 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- 1) Conteúdo da receita · edite SÓ este arquivo para trocar de café -->
-  <script src="dados-receita.js?v=15"></script>
+  <script src="dados-receita.js?v=16"></script>
   <!-- 2) Motor da página · não precisa mexer -->
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>

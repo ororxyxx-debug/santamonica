@@ -508,15 +508,13 @@
     const bloom = Math.round(c * cfg.bloomMult);
     const main  = w - bloom;
 
-    // preenche o trilho à esquerda do thumb (vira slider "de verdade", não um ponto)
+    // preenche o trilho à esquerda do thumb (fio com um trecho terracota)
     const sp = (c - cfg.min) / (cfg.max - cfg.min) * 100;
     slider.style.background = 'linear-gradient(90deg, var(--terra) 0 ' + sp + '%, var(--sand) ' + sp + '% 100%)';
 
-    // grãos proporcionais à dose (1 grão ≈ 1 g)
-    renderBeans(Math.round(c));
-
-    // Recipe Ritual: o cartão reage como papel físico e "trava" ao assentar
-    ritualReact(c);
+    // linha quieta de parâmetros: água · pré/despejo · tempo
+    const dl = $('doseLine');
+    if (dl) dl.textContent = w + 'g de água · ' + bloom + ' / ' + main + (M.timeLabel ? ' · ' + M.timeLabel : '');
 
     const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
 
