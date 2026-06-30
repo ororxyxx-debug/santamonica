@@ -432,8 +432,27 @@ body {
 .dose-water { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--ink-3); margin: 6px 0 4px; }
 .dose-water strong { font-weight: 500; color: var(--ink); }
 
-/* ─── Bandeja de grãos · feedback visual da dose (minimalista) ──────────────── */
-.bean-tray { display: flex; flex-wrap: wrap; gap: 6px 4px; align-content: flex-start; min-height: 9px; margin: 18px 0 4px; }
+/* ─── Balança · os grãos repousam num prato que inclina e trava nivelado ─────── */
+.scale { display: flex; flex-direction: column; align-items: center; margin: 22px 0 10px; }
+.scale-beam { width: 100%; transform-origin: 50% 100%; transform: rotate(var(--beam, 0deg)); transition: transform .55s var(--spring); }
+/* ao assentar, o braço oscila amortecido até nivelar (como uma balança real) */
+.scale-beam.settling { animation: beamSettle .9s cubic-bezier(.22,.68,.28,1) both; }
+@keyframes beamSettle {
+  0%   { transform: rotate(var(--beam0, 0deg)); }
+  28%  { transform: rotate(calc(var(--beam0, 0deg) * -0.42)); }
+  52%  { transform: rotate(calc(var(--beam0, 0deg) *  0.2)); }
+  74%  { transform: rotate(calc(var(--beam0, 0deg) * -0.09)); }
+  100% { transform: rotate(0deg); }
+}
+/* fulcro de lâmina (knife-edge): estreito e afiado, mais instrumento que ícone */
+.scale-fulcrum { width: 0; height: 0; border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-bottom: 13px solid var(--mocha); }
+.scale-foot { width: 50px; height: 1.5px; margin-top: 2px; background: var(--ink-5); border-radius: 2px; opacity: .5; }
+
+/* prato: grãos repousam sobre a linha-base; escorregam levemente com o peso */
+.bean-tray { display: flex; flex-wrap: nowrap; justify-content: center; gap: 4px; min-height: 9px; padding-bottom: 7px; border-bottom: 1.5px solid var(--ink-5); transform: translateX(var(--slide, 0px)); transition: transform .5s var(--ease2), border-color .4s var(--ease); }
+/* trava: a plataforma "nivela" com um brilho terracota de confirmação */
+.dial.settled .bean-tray { animation: levelGlow .6s var(--ease2); }
+@keyframes levelGlow { 0%, 100% { border-bottom-color: var(--ink-5); } 40% { border-bottom-color: var(--terra); } }
 .bean {
   --r: 0deg; --d: 0s;
   width: 13px; height: 8.5px; border-radius: 50% / 60%;
@@ -1188,10 +1207,9 @@ body.locked .recipe-lock {
   transition: opacity .85s var(--ease2), transform .55s var(--ease2), box-shadow .55s var(--ease2);
   transform-origin: 50% 42%; transform-style: preserve-3d;
 }
-.dial.adjusting {
-  transform: rotate(var(--tilt, 0deg)) translateY(-3px) scale(1.006);
-  box-shadow: var(--glass-edge), 0 36px 82px -34px rgba(14,14,13,.28);
-}
+/* ajustando: a física vive na balança (o braço inclina); o cartão só ganha um
+   leve aprofundamento de sombra, sem se mover */
+.dial.adjusting { box-shadow: var(--glass-edge), 0 30px 70px -38px rgba(14,14,13,.2); }
 
 /* travar: o número da dose dá um micro-pop com brilho terracota + vibração */
 .dose-n { display: inline-block; will-change: transform; }

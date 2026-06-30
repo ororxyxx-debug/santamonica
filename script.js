@@ -117,27 +117,41 @@
   /* Recipe Ritual — o cartão de dose se comporta como um documento físico:
      ao ajustar ele inclina/respira; quando o usuário para (assenta), ele
      "trava" com micro-vibração + brilho no número e os campos se recalculam. */
-  let _dialEl, _prevDose = null, _settleTimer = null;
+  let _dialEl, _beamEl, _prevDose = null, _settleTimer = null;
   function ritualReact(c) {
-    _dialEl = _dialEl || $('doseN') && document.querySelector('.dial');
+    _dialEl = _dialEl || document.querySelector('.dial');
+    _beamEl = _beamEl || $('scaleBeam');
     if (!_dialEl) return;
     if (_prevDose === null) { _prevDose = c; return; }   // 1ª render (init): sem ritual
     const delta = c - _prevDose;
     _prevDose = c;
     if (delta !== 0) {
-      _dialEl.style.setProperty('--tilt', (Math.sign(delta) * 0.55).toFixed(2) + 'deg');
+      // adicionar grãos pesa o prato (inclina); tirar alivia (inclina ao contrário)
+      if (_beamEl) {
+        _beamEl.classList.remove('settling');
+        _beamEl.style.setProperty('--beam',  (Math.sign(delta) * 2.6).toFixed(2) + 'deg');
+        _beamEl.style.setProperty('--slide', (Math.sign(delta) * 4).toFixed(0) + 'px');
+      }
       _dialEl.classList.add('adjusting');
       _dialEl.classList.remove('settled');
     }
     clearTimeout(_settleTimer);
     _settleTimer = setTimeout(() => {
-      // assentou: volta ao repouso e dispara o "travar + recalcular"
+      // assentou: o braço oscila amortecido até nivelar; o número "confirma"
+      if (_beamEl) {
+        const cur = _beamEl.style.getPropertyValue('--beam') || '0deg';
+        _beamEl.style.setProperty('--beam0', cur);   // ângulo de partida da oscilação
+        _beamEl.style.setProperty('--beam', '0deg');
+        _beamEl.style.setProperty('--slide', '0px');
+        _beamEl.classList.remove('settling');
+        void _beamEl.offsetWidth;                     // reflow p/ reiniciar a animação
+        _beamEl.classList.add('settling');
+      }
       _dialEl.classList.remove('adjusting');
-      _dialEl.style.setProperty('--tilt', '0deg');
       _dialEl.classList.remove('settled');
-      void _dialEl.offsetWidth;                 // reflow p/ reiniciar a animação
+      void _dialEl.offsetWidth;
       _dialEl.classList.add('settled');
-    }, 230);
+    }, 200);
   }
 
   /* Substitui {cafe}/{bloom}/{main}/{total} por spans que atualizam ao vivo.
