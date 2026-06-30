@@ -1237,7 +1237,21 @@ body.locked .recipe-lock {
 .dial-min { padding-top: clamp(30px, 4.5vh, 44px); padding-bottom: clamp(30px, 4.5vh, 44px); }
 
 /* número protagonista, unidade discreta embaixo */
-.dial-min .dose-readout { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: clamp(22px, 4.5vh, 38px) 0 clamp(24px, 4.5vh, 38px); }
+.dial-min .dose-readout { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+
+/* stepper · clicar nos botões − / + além de arrastar o slider */
+.dose-stepper { display: flex; align-items: center; gap: clamp(16px, 4.5vw, 30px); margin: clamp(22px, 4.5vh, 38px) 0 clamp(24px, 4.5vh, 38px); }
+.dose-btn {
+  flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid rgba(14,14,13,.2); background: none; color: var(--ink-2);
+  font-family: var(--sans); font-size: 22px; font-weight: 300; line-height: 1; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  -webkit-user-select: none; user-select: none;
+  transition: border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease), transform .25s var(--spring), opacity .3s var(--ease);
+}
+.dose-btn:hover  { border-color: var(--terra); color: var(--terra); }
+.dose-btn:active { transform: scale(.9); background: rgba(200,84,44,.07); }
+.dose-btn:disabled { opacity: .25; cursor: default; border-color: rgba(14,14,13,.2); color: var(--ink-2); }
 .dial-min .dose-n { font-size: clamp(3.8rem, 12vw, 5.8rem); line-height: .92; letter-spacing: -.045em; }
 .dial-min .dose-unit { font-size: 11px; letter-spacing: .2em; color: var(--ink-4); }
 

@@ -516,6 +516,11 @@
     const dl = $('doseLine');
     if (dl) dl.textContent = w + 'g de água · ' + bloom + ' / ' + main + (M.timeLabel ? ' · ' + M.timeLabel : '');
 
+    // botões − / + desabilitam nos limites
+    const mB = $('doseMinus'), pB = $('dosePlus');
+    if (mB) mB.disabled = c <= cfg.min;
+    if (pB) pB.disabled = c >= cfg.max;
+
     const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
 
     set('pCoffee', gnum(c) + 'g');
@@ -896,6 +901,20 @@
       if (saved != null) markTouched();
       ['pointerdown', 'touchstart', 'keydown'].forEach(ev =>
         slider.addEventListener(ev, markTouched, { once: true }));
+
+      // stepper: clicar nos botões − / + ajusta a dose pelo passo (além de arrastar)
+      const stepDose = (dir) => {
+        let v = +slider.value + dir * cfg.step;
+        v = Math.round(v / cfg.step) * cfg.step;   // alinha à grade do passo
+        v = clamp(v, cfg.min, cfg.max);
+        if (v === +slider.value) return;
+        slider.value = v;
+        render();
+        saveDose();
+      };
+      const mBtn = $('doseMinus'), pBtn = $('dosePlus');
+      if (mBtn) mBtn.addEventListener('click', () => stepDose(-1));
+      if (pBtn) pBtn.addEventListener('click', () => stepDose(1));
     }
 
     const sMin = $('sMin'), sMax = $('sMax');

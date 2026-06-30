@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
 
@@ -189,9 +189,13 @@
         <span class="ratio-pill" id="ratioPill">1 : 16</span>
       </div>
 
-      <div class="dose-readout">
-        <span class="dose-n" id="doseN">12,5</span>
-        <span class="dose-unit">gramas de café</span>
+      <div class="dose-stepper">
+        <button class="dose-btn" id="doseMinus" type="button" aria-label="Diminuir a dose">−</button>
+        <div class="dose-readout">
+          <span class="dose-n" id="doseN">12,5</span>
+          <span class="dose-unit">gramas de café</span>
+        </div>
+        <button class="dose-btn" id="dosePlus" type="button" aria-label="Aumentar a dose">+</button>
       </div>
 
       <div class="slider-row">
@@ -316,8 +320,8 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- 1) Conteúdo da receita · edite SÓ este arquivo para trocar de café -->
-  <script src="dados-receita.js?v=16"></script>
+  <script src="dados-receita.js?v=17"></script>
   <!-- 2) Motor da página · não precisa mexer -->
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>
