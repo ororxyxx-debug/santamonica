@@ -266,7 +266,7 @@ const RECIPE = {
     background: 'https://i.imgur.com/nT1PjRw.png',   // fundo do explicativo do Lucca Lab
     role:     'Receita desenvolvida no',
     name:     'Lucca\n*Lab.*',
-    bio:      'O **Lucca Lab** é o laboratório sensorial da **Lucca Cafés Especiais**: onde nossa equipe de baristas prova, calibra e assina cada receita antes de ela chegar até você. Não é uma pessoa — é o nosso método.',
+    bio:      'O **Lucca Lab** é o laboratório sensorial do **Lucca Cafés Especiais**: onde nossa equipe de baristas prova, calibra e assina cada receita antes de ela chegar até você. Não é uma pessoa — é o nosso método.',
     quote:    `Cada receita Lucca Lab nasce de várias sessões de prova até encontrar o ponto que evidencia aquilo que torna os cafés especiais tão fascinantes: a *transparência dos sabores*, a doçura natural e a expressão única da origem.
 
 Para este Maragogipe, ajustamos os parâmetros para preservar a *delicadeza floral* nos primeiros goles, revelar a acidez vibrante do maracujá no centro da degustação e finalizar com a *doçura cremosa de crème brûlée* que marcou nossas provas.`,
@@ -274,7 +274,7 @@ Para este Maragogipe, ajustamos os parâmetros para preservar a *delicadeza flor
     // No lugar de "formações" de um curador, vai o canal da marca.
     coursesLabel: 'Onde acompanhar',
     courses: [
-      { label: 'Instagram', href: 'https://www.instagram.com/luccacafes/' },
+      { label: 'Instagram', href: 'https://www.instagram.com/luccacafesespeciais/' },
     ],
   },
 
@@ -284,7 +284,7 @@ Para este Maragogipe, ajustamos os parâmetros para preservar a *delicadeza flor
   closing: {
     index:    '/ Conta pra gente',
     headline: 'Como ficou\n*sua xícara?*',
-    lede:     'Ajustou a moagem, mudou algo? A Lucca Lab lê todas.',
+    lede:     'Ajustou a moagem, mudou algo? O Lucca Lab lê todas.',
 
     // Botões de feedback (abrem o WhatsApp). {nomeCafe} e {metodo} entram sozinhos.
     feedback: [
